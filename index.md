@@ -1,29 +1,68 @@
 ## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/thimbletech/thimbletech.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## SwiftUI
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Environment Variables
 
-### Markdown
+#### Setup
+An observable containing the env data
+
+```markdown
+class ClothingItem: ObservableObject {
+    @Published var name: String = "croppedt"
+}
+```
+#### Access
+```Markdown
+@EnvironmentObject var clothingItem: ClothingItem
+```
+
+### Binding
+You can use @Binding / @State to set state in another struct, however it (struct with binding) must be intiailized where @State is accessible
+
+### Specific corners rounded
+
+```markdown
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
+struct RoundedCorner: Shape {
+
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+```
+### Foundation
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
 ```markdown
-Syntax highlighted code block
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
 
-# Header 1
-## Header 2
-### Header 3
+struct RoundedCorner: Shape {
 
-- Bulleted
-- List
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
 
-1. Numbered
-2. List
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
