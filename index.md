@@ -1,6 +1,6 @@
 ## Welcome to GitHub Pages
 
-## Fish
+## [Fish](https://thimbletech.github.io/fish)
 ### Package Manager
 https://github.com/jorgebucaran/fisher
 ### Bash support for Fish
